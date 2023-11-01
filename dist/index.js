@@ -31196,7 +31196,7 @@ async function main () {
   const majorChanges = []
   const minorChanges = []
   const patchChanges = []
-  for (const commit of commits) {
+  for (const commit of commits.slice(-1)) {
     try {
       const cAst = cc.toConventionalChangelogFormat(cc.parser(commit.commit.message))
       if (bumpTypes.major.includes(cAst.type)) {
