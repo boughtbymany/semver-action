@@ -41,7 +41,7 @@ async function main () {
     const tagsRaw = await gh.graphql(`
       query lastTags ($owner: String!, $repo: String!) {
         repository (owner: $owner, name: $repo) {
-          refs(first: 10, refPrefix: "refs/tags/", orderBy: { field: TAG_COMMIT_DATE, direction: DESC }) {
+          refs(first: 100, refPrefix: "refs/tags/", orderBy: { field: TAG_COMMIT_DATE, direction: DESC }) {
             nodes {
               name
               target {
@@ -76,7 +76,7 @@ async function main () {
     }
 
     if (!latestTag) {
-      return core.setFailed(skipInvalidTags ? 'None of the 10 latest tags are valid semver!' : 'Latest tag is invalid (does not conform to semver)!')
+      return core.setFailed(skipInvalidTags ? 'None of the 100 latest tags are valid semver!' : 'Latest tag is invalid (does not conform to semver)!')
     }
 
     core.info(`Comparing against latest tag: ${prefix}${latestTag.name}`)
