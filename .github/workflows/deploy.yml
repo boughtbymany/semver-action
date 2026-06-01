@@ -21,7 +21,7 @@ jobs:
           branch: main
 
       - name: Create Draft Release
-        uses: ncipollo/release-action@v1.12.0
+        uses: ncipollo/release-action@a2e71bdd4e7dab70ca26a852f29600c98b33153e # v1.12.0
         if: ${{ !env.ACT }}
         with:
           prerelease: true
@@ -35,7 +35,7 @@ jobs:
       - name: Update CHANGELOG
         if: ${{ !env.ACT }}
         id: changelog
-        uses: requarks/changelog-action@v1
+        uses: requarks/changelog-action@b78a3354a01f4a1affb484b9264b506a815c46b1 # v1.10.3
         with:
           token: ${{ github.token }}
           tag: ${{ steps.semver.outputs.next }}
