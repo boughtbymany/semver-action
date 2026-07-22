@@ -3,6 +3,9 @@ name: Deploy
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -10,6 +13,7 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+          persist-credentials: false
         if: ${{ !env.ACT }}
 
       - name: Get Next Version
@@ -69,6 +73,7 @@ jobs:
 
       - name: (local) Checkout Code
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+          persist-credentials: false
         if: ${{ env.ACT }}
         with:
           path: changelog-action
